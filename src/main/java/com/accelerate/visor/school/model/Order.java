@@ -1,4 +1,4 @@
-package com.accelerate.visor.model;
+package com.accelerate.visor.school.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

@@ -1,4 +1,7 @@
-package com.accelerate.visor.model;
+package com.accelerate.visor.school.model;
+
+
+
 import javax.persistence.Column;
 import javax.persistence.Table;
 import java.util.Arrays;
@@ -6,17 +9,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreType;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @JsonIgnoreType
 @javax.persistence.Entity
+
+
 @Table(name = "academicYear")
 @javax.persistence.SequenceGenerator(name = "default_gen", sequenceName = "academicYear_id_seq", allocationSize = 1)
 public class AcademicYear extends Entity {
@@ -33,6 +29,15 @@ public class AcademicYear extends Entity {
     @Column(nullable = false, unique = true)
     private Integer upperCalendarYear;
 
+    /*public AcademicYear(String code, String name, Integer lowerCalendarYear, Integer upperCalendarYear) {
+        this.name = name;
+        this.code = code;
+        if (lowerCalendarYear == null || upperCalendarYear == null || upperCalendarYear - lowerCalendarYear != 1) {
+            throw new AccelerateException("Please add Correct Lower and Upper AY");
+        }
+        this.lowerCalendarYear = lowerCalendarYear;
+        this.upperCalendarYear = upperCalendarYear;
+    }*/
 
     @Deprecated
     public AcademicYear(String code, String name) {
@@ -42,6 +47,17 @@ public class AcademicYear extends Entity {
             this.lowerCalendarYear = Integer.parseInt(name.split("-")[0]);
             this.upperCalendarYear = Integer.parseInt(name.split("-")[1]);
         }
+    }
+
+    public AcademicYear() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCode() {
+        return code;
     }
 
     public List<Integer> getApplicableYears() {
